@@ -30,7 +30,13 @@ namespace Red_mango_API.Controllers
         [HttpGet]
         public async Task<IActionResult> GetMenuItems()
         {
-            _response.Result =await _db.MenuItems.ToListAsync();
+            var menuItems= await _db.MenuItems.ToListAsync();
+            foreach(var menuItem in menuItems)
+            {
+                string image = Path.Combine(_imagesPath, menuItem.Image);
+                menuItem.Image = image.Replace("\\", "/");
+            }
+            _response.Result = menuItems;
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
         }
@@ -50,6 +56,8 @@ namespace Red_mango_API.Controllers
                 _response.IsSuccess = false;
                 return NotFound(_response);
             }
+            string image = Path.Combine(_imagesPath, menuItem.Image);
+            menuItem.Image = image.Replace("\\", "/");
             _response.Result = menuItem;
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
@@ -138,8 +146,7 @@ namespace Red_mango_API.Controllers
                     await _db.SaveChangesAsync();
                     _response.StatusCode = HttpStatusCode.NoContent;
                     string image = Path.Combine(_imagesPath, menuItemFromDb.Image);
-                    //menuItemFromDb.Image = image.Replace("\\", "/");
-                    menuItemFromDb.Image = image;
+                    menuItemFromDb.Image = image.Replace("\\", "/");
                     _response.Result = menuItemFromDb;
 
                     return Ok(_response);
