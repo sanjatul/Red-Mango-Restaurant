@@ -1,2 +1,4 @@
 import Home from "./Home";
-export {Home};
+import NotFound from "./NotFound";
+import MenuItemDetails from "./MenuItemDetails";
+export {Home,NotFound,MenuItemDetails};
