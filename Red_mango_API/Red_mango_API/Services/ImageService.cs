@@ -18,7 +18,7 @@ namespace Red_mango_API.Services
         {
             try
             {
-                string imagePath = Path.Combine(_imagesFolderPath, imageName);
+                string imagePath = Path.Combine("F:\\Projects\\Red_Mango\\red_mango_app\\src\\Assets\\Images\\foods", imageName);
 
                 if (File.Exists(imagePath))
                 {
@@ -41,7 +41,7 @@ namespace Red_mango_API.Services
         {
             // Assuming MentuItems is an entity in your ApplicationDbContext
             var imageData = await _context.MenuItems.AsNoTracking().FirstOrDefaultAsync(item => item.Image == imageName);
-            string imagePath = Path.Combine(_imagesFolderPath, imageName);
+            string imagePath = Path.Combine("F:\\Projects\\Red_Mango\\red_mango_app\\src\\Assets\\Images\\foods", imageName);
             // Image exists in the "images" folder, return the image path
             return imagePath;
 
@@ -51,7 +51,7 @@ namespace Red_mango_API.Services
         {
             try
             {
-                string imagePath = Path.Combine(_imagesFolderPath, imageName);
+                string imagePath = Path.Combine("F:\\Projects\\Red_Mango\\red_mango_app\\src\\Assets\\Images\\foods", imageName);
 
                 using (var stream = new FileStream(imagePath, FileMode.Create))
                 {

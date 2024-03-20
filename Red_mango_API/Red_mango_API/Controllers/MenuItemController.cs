@@ -31,11 +31,11 @@ namespace Red_mango_API.Controllers
         public async Task<IActionResult> GetMenuItems()
         {
             var menuItems= await _db.MenuItems.ToListAsync();
-            foreach(var menuItem in menuItems)
-            {
-                string image = Path.Combine(_imagesPath, menuItem.Image);
-                menuItem.Image = image.Replace("\\", "/");
-            }
+            //foreach(var menuItem in menuItems)
+            //{
+            //    string image = Path.Combine("F:\\Projects\\Red_Mango\\red_mango_app\\src\\Assets\\Images\\foods", menuItem.Image);
+            //    menuItem.Image = image.Replace("\\", "/");
+            //}
             _response.Result = menuItems;
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
@@ -56,8 +56,8 @@ namespace Red_mango_API.Controllers
                 _response.IsSuccess = false;
                 return NotFound(_response);
             }
-            string image = Path.Combine(_imagesPath, menuItem.Image);
-            menuItem.Image = image.Replace("\\", "/");
+            //string image = Path.Combine("F:\\Projects\\Red_Mango\\red_mango_app\\src\\Assets\\Images\\foods", menuItem.Image);
+            //menuItem.Image = image.Replace("\\", "/");
             _response.Result = menuItem;
             _response.StatusCode = HttpStatusCode.OK;
             return Ok(_response);
@@ -145,8 +145,8 @@ namespace Red_mango_API.Controllers
                     _db.MenuItems.Update(menuItemFromDb);
                     await _db.SaveChangesAsync();
                     _response.StatusCode = HttpStatusCode.NoContent;
-                    string image = Path.Combine(_imagesPath, menuItemFromDb.Image);
-                    menuItemFromDb.Image = image.Replace("\\", "/");
+                    //string image = Path.Combine("F:\\Projects\\Red_Mango\\red_mango_app\\src\\Assets\\Images\\foods", menuItemFromDb.Image);
+                    //menuItemFromDb.Image = image.Replace("\\", "/");
                     _response.Result = menuItemFromDb;
 
                     return Ok(_response);

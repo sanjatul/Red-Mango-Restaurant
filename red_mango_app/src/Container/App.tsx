@@ -1,13 +1,13 @@
-import React from 'react';
 import { Footer, Header } from '../Components/Layout';
-
+import { Home } from '../Pages';
 
 function App() {
+
   return (
     <div className="">
-      <Header/>
-      Main Components
-      <Footer/>
+      <Header />
+      <Home />
+      <Footer />
     </div>
   );
 }
